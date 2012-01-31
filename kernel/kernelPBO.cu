@@ -13,7 +13,7 @@ void checkCUDAError(const char *msg) {
     }
 } 
 
-__global__ void kernel( uchar4 *ptr, unsigned int width, 
+__global__ void kernel( uchar4 *ptr, unsigned int width,
                         unsigned int height, int iter, int time ) {
     // map from threadIdx/BlockIdx to pixel position
     float x = threadIdx.x + blockIdx.x * blockDim.x;
@@ -46,7 +46,7 @@ __global__ void kernel( uchar4 *ptr, unsigned int width,
     ptr[offset].w = 255;
 }
 
-extern "C" void launch_kernel( uchar4* pos, unsigned int image_width, 
+extern "C" void launch_kernel( uchar4* pos, unsigned int image_width,
                                unsigned int image_height, int time ) {
     dim3    blocks(image_width/16, image_height/16);
     dim3    threads(16,16);
@@ -56,7 +56,7 @@ extern "C" void launch_kernel( uchar4* pos, unsigned int image_width,
 
 
 //Simple kernel writes changing colors to a uchar4 array
-/*__global__ void kernel(uchar4* pos, unsigned int width, unsigned int height, 
+/*__global__ void kernel(uchar4* pos, unsigned int width, unsigned int height,
                int time)
 {
   int index = blockIdx.x * blockDim.x + threadIdx.x;
