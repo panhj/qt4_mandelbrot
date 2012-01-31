@@ -30,7 +30,7 @@ macx {
   cuda.output = ${OBJECTS_DIR}${QMAKE_FILE_BASE}_cuda.obj
   cuda.commands = nvcc -c -Xcompiler $$join(QMAKE_CXXFLAGS,",") $$join(INCLUDEPATH,'" -I "','-I "','"') ${QMAKE_FILE_NAME} -o ${QMAKE_FILE_OUT}
   cuda.dependcy_type = TYPE_C
-  cuda.depend_command = nvcc -M -Xcompiler $$join(QMAKE_CXXFLAGS,",") $$join(INCLUDEPATH,'" -I "','-I "','"') ${QMAKE_FILE_NAME} | sed "s,^.*: ,," | sed "s,^ *,," | tr -d '\\n'
+  cuda.depend_command = nvcc -M -Xcompiler $$join(QMAKE_CXXFLAGS,",") $$join(INCLUDEPATH,'" -I "','-I "','"') ${QMAKE_FILE_NAME} | sed '"'s,^.*: ,,'"' | sed '"'s,^ *,,'"' | tr -d '\\n'
 }
 cuda.input = CUDA_SOURCES
 QMAKE_EXTRA_COMPILERS += cuda
